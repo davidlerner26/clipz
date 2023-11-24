@@ -18,6 +18,12 @@ export class UploadComponent {
     title: this.title
   })
 
+  showAlert = false;
+  alertMsg = 'Please wait! Your clip is being uploaded.';
+  alertColor = 'blue';
+  inSubmission = false;
+  percentage = 0;
+
   constructor(private storage: AngularFireStorage) { }
 
   storeFile($event: Event) {
@@ -33,10 +39,18 @@ export class UploadComponent {
     );
   }
 
-  submit() {
+  uploadFile() {
+    this.showAlert = true;
+    this.alertColor = 'blue';
+    this.alertMsg = 'Please wait! Your clip is being uploaded.';
+    this.inSubmission = true;
+
     const clipFileName = uuid();
     const clipPath = `clips/${clipFileName}.mp4`;
-    this.storage.upload(clipPath, this.file);
+    const task = this.storage.upload(clipPath, this.file);
+    task.percentageChanges().subscribe(progress => {
+      this.percentage = progress as number / 100;
+    })
   }
 
 }
