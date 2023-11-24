@@ -16,8 +16,8 @@
         <!-- Video Editor -->
         <ng-template #uploadFormCtrl>
             <app-alert *ngIf="showAlert" [color]="alertColor">
-                {{ alertMsg }}
-                {{ percentage | percent }}
+                <p>{{ alertMsg }}</p>
+                <p *ngIf="percentage || percentage === 0">{{ percentage | percent }}</p>
             </app-alert>
 
             <!-- Form -->
