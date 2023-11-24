@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
-import { ModalService } from '../services/modal.service';
 import { AuthService } from '../services/auth.service';
-import { AngularFireAuth } from '@angular/fire/compat/auth';
+import { ModalService } from '../services/modal.service';
 
 @Component({
   selector: 'app-nav',
@@ -12,8 +11,7 @@ export class NavComponent {
 
   constructor(
     public modal: ModalService,
-    public authService: AuthService,
-    private angularFireAuth: AngularFireAuth
+    public authService: AuthService
   ) { }
 
   openModal($event: Event) {
@@ -21,9 +19,6 @@ export class NavComponent {
     this.modal.toggleModal('auth');
   }
 
-  async logout($event: Event) {
-    $event.preventDefault();
-    await this.angularFireAuth.signOut();
-  }
+
 
 }
