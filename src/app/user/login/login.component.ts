@@ -28,8 +28,6 @@ export class LoginComponent {
 
     try {
       await this.auth.signInWithEmailAndPassword(this.credentials.email, this.credentials.password);
-      this.alertMsg = 'Sucess! Your account has been created!';
-      this.alertColor = 'green';
     } catch (error) {
       console.error(error);
       this.inSubmission = false;
