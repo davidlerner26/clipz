@@ -5,8 +5,9 @@ import { v4 as uuid } from "uuid";
 import { last, switchMap } from 'rxjs';
 import firebase from "firebase/compat/app";
 import { AngularFireAuth } from '@angular/fire/compat/auth';
-import { ClipsService } from 'src/app/services/clips.service';
 import { Router } from '@angular/router';
+import { IClip } from 'src/app/models/clip.model';
+import { ClipService } from 'src/app/services/clip.service';
 @Component({
   selector: 'app-upload',
   templateUrl: './upload.component.html',
@@ -34,7 +35,7 @@ export class UploadComponent implements OnDestroy {
   constructor(
     private storage: AngularFireStorage,
     private auth: AngularFireAuth,
-    private clipsService: ClipsService,
+    private clipService: ClipService,
     private router: Router
   ) {
     auth.user.subscribe(user => this.user = user);
@@ -74,15 +75,16 @@ export class UploadComponent implements OnDestroy {
       switchMap(() => clipRef.getDownloadURL())
     ).subscribe({
       next: async (url) => {
-        const clip = {
+        const clip: IClip = {
           uid: this.user?.uid as string,
           displayName: this.user?.displayName as string,
           title: this.title.value as string,
           fileName: `${clipFileName}.mp4`,
-          url
+          url,
+          timestamp: firebase.firestore.FieldValue.serverTimestamp()
         }
 
-        const clipDocRef = await this.clipsService.createClip(clip);
+        const clipDocRef = await this.clipService.createClip(clip);
 
         this.alertColor = 'green';
         this.alertMsg = 'Success! Your clip is now ready to share with the world!';
