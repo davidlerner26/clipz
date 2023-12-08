@@ -32,19 +32,20 @@ export class UploadComponent implements OnDestroy {
   percentage: number | null = 0;
   user: firebase.User | null = null;
   task?: AngularFireUploadTask;
+  screenshots: string[] = [];
 
   constructor(
     private storage: AngularFireStorage,
     private auth: AngularFireAuth,
     private clipService: ClipService,
     private router: Router,
-    private ffmpegService: FfmpegService
+    public ffmpegService: FfmpegService
   ) {
     auth.user.subscribe(user => this.user = user);
     this.ffmpegService.init();
   }
 
-  storeFile($event: Event) {
+  async storeFile($event: Event) {
     this.isDragover = false;
     this.file = ($event as DragEvent).dataTransfer ?
       ($event as DragEvent).dataTransfer?.files.item(0) ?? null :
@@ -53,6 +54,8 @@ export class UploadComponent implements OnDestroy {
     if (!this.file || this.file.type !== 'video/mp4') {
       return;
     }
+
+    this.screenshots = await this.ffmpegService.getScreenshots(this.file);
 
     this.uploadForm.get('title')?.setValue(
       this.file.name.replace(/\.[^/.]+$/, '')
