@@ -16,6 +16,7 @@ import { FfmpegService } from 'src/app/ffmpeg.service';
 })
 export class UploadComponent implements OnDestroy {
 
+  nextStep = false;
   isDragover = false;
   file: File | null = null;
 
@@ -46,6 +47,7 @@ export class UploadComponent implements OnDestroy {
   }
 
   async storeFile($event: Event) {
+    if (this.ffmpegService.isRunning) return;
     this.isDragover = false;
     this.file = ($event as DragEvent).dataTransfer ?
       ($event as DragEvent).dataTransfer?.files.item(0) ?? null :
@@ -56,7 +58,7 @@ export class UploadComponent implements OnDestroy {
     }
 
     this.screenshots = await this.ffmpegService.getScreenshots(this.file);
-
+    this.nextStep = true;
     this.uploadForm.get('title')?.setValue(
       this.file.name.replace(/\.[^/.]+$/, '')
     );
