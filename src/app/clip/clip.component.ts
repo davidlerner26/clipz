@@ -2,26 +2,32 @@ import { Component, ElementRef, OnInit, ViewChild, ViewEncapsulation } from '@an
 import { ActivatedRoute, Params } from '@angular/router';
 import videojs from "video.js";
 import Player from 'video.js/dist/types/player';
+import { IClip } from '../models/clip.model';
+import { DatePipe } from '@angular/common';
 @Component({
   selector: 'app-clip',
   templateUrl: './clip.component.html',
   styleUrls: ['./clip.component.scss'],
-  encapsulation: ViewEncapsulation.None
+  encapsulation: ViewEncapsulation.None,
+  providers: [DatePipe]
 })
 export class ClipComponent implements OnInit {
 
   @ViewChild('videoPlayer', { static: true }) target?: ElementRef;
   player?: Player;
-  id = '';
+  clip?: IClip;
 
   constructor(public route: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.player = videojs.getPlayer(this.target?.nativeElement);
-    this.id = this.route.snapshot.params['id'];
-    this.route.params.subscribe((params: Params) => {
-      this.id = params['id'];
-    })
+    this.route.data.subscribe(data => {
+      this.clip = data['clip'];
+      this.player?.src({
+        src: this.clip?.url,
+        type: 'video/mp4'
+      })
+    });
   }
 
 
