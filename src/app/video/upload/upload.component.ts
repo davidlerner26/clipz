@@ -8,6 +8,7 @@ import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { Router } from '@angular/router';
 import { IClip } from 'src/app/models/clip.model';
 import { ClipService } from 'src/app/services/clip.service';
+import { FfmpegService } from 'src/app/ffmpeg.service';
 @Component({
   selector: 'app-upload',
   templateUrl: './upload.component.html',
@@ -36,9 +37,11 @@ export class UploadComponent implements OnDestroy {
     private storage: AngularFireStorage,
     private auth: AngularFireAuth,
     private clipService: ClipService,
-    private router: Router
+    private router: Router,
+    private ffmpegService: FfmpegService
   ) {
     auth.user.subscribe(user => this.user = user);
+    this.ffmpegService.init();
   }
 
   storeFile($event: Event) {
