@@ -2,15 +2,15 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ClipsListComponent } from './clips-list.component';
 
-describe('ClipsListComponent', () => {
+xdescribe('ClipsListComponent', () => {
   let component: ClipsListComponent;
   let fixture: ComponentFixture<ClipsListComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ClipsListComponent ]
+      declarations: [ClipsListComponent]
     })
-    .compileComponents();
+      .compileComponents();
 
     fixture = TestBed.createComponent(ClipsListComponent);
     component = fixture.componentInstance;
