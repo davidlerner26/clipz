@@ -1,81 +1,81 @@
-import { Injectable } from '@angular/core';
+import { Injectable, signal } from '@angular/core';
 import { createFFmpeg, fetchFile } from '@ffmpeg/ffmpeg';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class FfmpegService {
-  isRunning = false
-  isReady = false
-  private ffmpeg
+  isReady = signal(false);
+  ffmpeg = createFFmpeg({ log: true });
+  isRunning = signal(false);
 
-  constructor() { 
-    this.ffmpeg = createFFmpeg({ log: true })
-  }
+  constructor() {}
 
   async init() {
-    if(this.isReady) {
-      return
-    }
+    if (this.isReady()) return;
 
-    await this.ffmpeg.load()
+    await this.ffmpeg.load();
 
-    this.isReady = true
+    this.isReady.set(true);
   }
 
-  async getScreenshots(file: File) {
-    this.isRunning = true
+  async getScreenshots(file: File | null) {
+    if (!file) return [];
 
-    const data = await fetchFile(file)
+    this.isRunning.set(true);
 
-    this.ffmpeg.FS('writeFile', file.name, data)
+    const data = await fetchFile(file);
 
-    const seconds = [1,2,3]
-    const commands: string[] = []
+    this.ffmpeg.FS('writeFile', file.name, data);
 
-    seconds.forEach(second => {
+    const seconds = [1, 2, 3];
+    const commands: string[] = [];
+
+    seconds.forEach((second) => {
       commands.push(
         // Input
-        '-i', file.name,
+        '-i',
+        file.name,
         // Output Options
-        '-ss', `00:00:0${second}`,
-        '-frames:v', '1',
-        '-filter:v', 'scale=510:-1',
+        '-ss',
+        `00:00:0${second}`,
+        '-frames:v',
+        '1',
+        '-filter:v',
+        'scale=510:-1',
         // Output
         `output_0${second}.png`
-      )
-    })
+      );
+    });
 
-    await this.ffmpeg.run(
-      ...commands
-    )
+    await this.ffmpeg.run(...commands);
 
-    const screenshots: string[] = []
+    const screenshots: string[] = [];
 
-    seconds.forEach(second => {
+    seconds.forEach((second) => {
       const screenshotFile = this.ffmpeg.FS(
-        'readFile', `output_0${second}.png`
-      )
-      const screenshotBlob = new Blob(
-        [screenshotFile.buffer], {
-          type: 'image/png'
-        }
-      )
+        'readFile',
+        `output_0${second}.png`
+      );
 
-      const screenshotURL = URL.createObjectURL(screenshotBlob)
+      const screenshotBlob = new Blob([screenshotFile.buffer], {
+        type: 'image/png',
+      });
 
-      screenshots.push(screenshotURL)
-    })
+      const screenshotURL = URL.createObjectURL(screenshotBlob);
 
-    this.isRunning = false
+      screenshots.push(screenshotURL);
+    });
 
-    return screenshots
+    this.isRunning.set(false);
+
+    return screenshots;
   }
 
   async blobFromURL(url: string) {
-    const response = await fetch(url)
-    const blob = await response.blob()
+    const response = await fetch(url);
+    const blob = await response.blob();
 
-    return blob
+    return blob;
   }
 }

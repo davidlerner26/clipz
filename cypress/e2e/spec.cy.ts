@@ -1,5 +1,5 @@
 describe('My First Test', () => {
-  it('Sanity test', () => {
+  it('Visits the initial project page', () => {
     cy.visit('/');
     cy.contains('#header .text-3xl', 'Clips');
   });

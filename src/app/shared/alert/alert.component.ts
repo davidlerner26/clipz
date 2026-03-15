@@ -1,20 +1,17 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, input } from '@angular/core';
+import { NgClass } from '@angular/common';
 
 @Component({
   selector: 'app-alert',
+  standalone: true,
+  imports: [NgClass],
   templateUrl: './alert.component.html',
-  styleUrls: ['./alert.component.css']
+  styleUrl: './alert.component.css',
 })
-export class AlertComponent implements OnInit {
-  @Input() color = 'blue'
+export class AlertComponent {
+  color = input('blue');
 
   get bgColor() {
-    return `bg-${this.color}-400`
+    return `bg-${this.color()}-400`;
   }
-
-  constructor() { }
-
-  ngOnInit(): void {
-  }
-
 }

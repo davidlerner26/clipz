@@ -1,35 +1,30 @@
-import { Component, AfterContentInit, ContentChildren, QueryList } from '@angular/core';
+import { Component, contentChildren, AfterContentInit } from '@angular/core';
+import { NgClass } from '@angular/common';
 import { TabComponent } from '../tab/tab.component';
 
 @Component({
   selector: 'app-tabs-container',
+  standalone: true,
+  imports: [NgClass],
   templateUrl: './tabs-container.component.html',
-  styleUrls: ['./tabs-container.component.css']
+  styleUrl: './tabs-container.component.css',
 })
 export class TabsContainerComponent implements AfterContentInit {
+  tabs = contentChildren(TabComponent);
 
-  @ContentChildren(TabComponent) tabs: QueryList<TabComponent> = new QueryList()
+  ngAfterContentInit() {
+    const activeTab = this.tabs().find((tab) => tab.active());
 
-  constructor() { }
-
-  ngAfterContentInit(): void {
-    const activeTabs = this.tabs?.filter(
-      tab => tab.active
-    )
-
-    if (!activeTabs || activeTabs.length === 0) {
-      this.selectTab(this.tabs!.first)
+    if (!activeTab) {
+      this.selectTab(this.tabs()[0]);
     }
   }
 
   selectTab(tab: TabComponent) {
-    this.tabs?.forEach(tab => {
-      tab.active = false
-    })
+    this.tabs().forEach((tab) => tab.active.set(false));
 
-    tab.active = true
+    tab.active.set(true);
 
-    return false
+    return false;
   }
-
 }

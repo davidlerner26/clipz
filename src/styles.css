@@ -16,7 +16,7 @@ body {
 }
 
 .bg-gradient {
-  background: linear-gradient(132deg, #FC415A, #591BC5, #212335);
+  background: linear-gradient(132deg, #fc415a, #591bc5, #212335);
   background-size: 400% 400%;
   animation: gradient 10s ease infinite;
 }
@@ -27,13 +27,13 @@ body {
   left: 45%;
   width: 10px;
   height: 10px;
-  border: solid 1px #D7D4E4;
+  border: solid 1px #d7d4e4;
   transform-origin: top left;
   transform: scale(0) rotate(0deg) translate(-50%, -50%);
   animation: cube 8s ease-in forwards infinite;
 }
 .cube:nth-child(2n) {
-  border-color: #FFF ;
+  border-color: #fff;
 }
 .cube:nth-child(2) {
   animation-delay: 1s;
@@ -66,104 +66,105 @@ body {
   grid-template-rows: 20px 0;
 }
 
-.latest:after, .latest:before {
+.latest:after,
+.latest:before {
   content: " ";
   display: block;
   border-bottom: 3px solid #fff;
 }
 
-
-
 .ghost {
   border-radius: 150px 150px 7px 7px;
   -webkit-animation: ghost 1.5s ease-in-out alternate infinite;
-          animation: ghost 1.5s ease-in-out alternate infinite;
+  animation: ghost 1.5s ease-in-out alternate infinite;
 }
 
 .corner {
-  width: 30px; height: 30px;
-  border-radius: 5px; 
+  width: 30px;
+  height: 30px;
+  border-radius: 5px;
   background-color: #161d31;
   position: absolute;
-  margin-top: 188px; 
-  -webkit-transform: rotate(45deg); 
-          transform: rotate(45deg); 
-  z-index: -1; 
+  margin-top: 188px;
+  -webkit-transform: rotate(45deg);
+  transform: rotate(45deg);
+  z-index: -1;
 }
 .corner.two {
-  margin-left: 35px; 
+  margin-left: 35px;
 }
 .corner.three {
-  margin-left: 70px; 
+  margin-left: 70px;
 }
 .corner.four {
-  margin-left: 105px; 
+  margin-left: 105px;
 }
 
 .over {
-  width: 30px; height: 30px;
-  border-radius: 4px; 
+  width: 30px;
+  height: 30px;
+  border-radius: 4px;
   background-color: #161d31;
   position: absolute;
-  margin-top: 188px; 
-  -webkit-transform: rotate(45deg) translateX(4px) translateY(4px); 
-          transform: rotate(45deg) translateX(4px) translateY(4px); 
+  margin-top: 188px;
+  -webkit-transform: rotate(45deg) translateX(4px) translateY(4px);
+  transform: rotate(45deg) translateX(4px) translateY(4px);
 }
 .over.two {
-  margin-left: 35px; 
+  margin-left: 35px;
 }
 .over.three {
-  margin-left: 70px; 
+  margin-left: 70px;
 }
 .over.four {
-  margin-left: 105px; 
+  margin-left: 105px;
 }
 
 .ghost-shadow {
   border-radius: 100%;
   -webkit-animation: shadow 1.5s ease-in-out alternate infinite;
-          animation: shadow 1.5s ease-in-out alternate infinite;
+  animation: shadow 1.5s ease-in-out alternate infinite;
 }
 
 @-webkit-keyframes shadow {
   0% {
     -webkit-transform: scale(1) translateY(0px);
-            transform: scale(1) translateY(0px);
+    transform: scale(1) translateY(0px);
   }
   100% {
     -webkit-transform: scale(0.8) translateY(75px);
-            transform: scale(0.8) translateY(75px);
+    transform: scale(0.8) translateY(75px);
   }
 }
 
 @keyframes shadow {
   0% {
     -webkit-transform: scale(1) translateY(0px);
-            transform: scale(1) translateY(0px);
+    transform: scale(1) translateY(0px);
   }
   100% {
     -webkit-transform: scale(0.8) translateY(75px);
-            transform: scale(0.8) translateY(75px);
+    transform: scale(0.8) translateY(75px);
   }
 }
 @-webkit-keyframes ghost {
   0% {
     -webkit-transform: scale(1) translateY(0px);
-            transform: scale(1) translateY(0px)
+    transform: scale(1) translateY(0px);
   }
   100% {
     -webkit-transform: scale(1) translateY(-40px);
-            transform: scale(1) translateY(-40px)
+    transform: scale(1) translateY(-40px);
   }
 }
 @keyframes ghost {
   0% {
     -webkit-transform: scale(1) translateY(0px);
-            transform: scale(1) translateY(0px)
+    transform: scale(1) translateY(0px);
   }
   100% {
     -webkit-transform: scale(1) translateY(-40px);
-            transform: scale(1) translateY(-40px)
+    transform: scale(1) translateY(-40px);
   }
 }
 
