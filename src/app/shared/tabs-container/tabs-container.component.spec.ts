@@ -6,13 +6,14 @@ import { TabComponent } from '../tab/tab.component';
 import { By } from '@angular/platform-browser';
 
 @Component({
-    template: `
+  template: `
     <app-tabs-container>
       <app-tab tabTitle="Tab One">Hey!</app-tab>
       <app-tab tabTitle="Tab Two">Hi!</app-tab>
     </app-tabs-container>
   `,
-    imports: [TabsContainerComponent, TabComponent]
+  standalone: true,
+  imports: [TabsContainerComponent, TabComponent],
 })
 class TestPostComponent {}
 
