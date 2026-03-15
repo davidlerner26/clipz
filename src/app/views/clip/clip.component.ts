@@ -6,17 +6,17 @@ import {
   viewChild,
   ElementRef,
 } from '@angular/core';
-import { ActivatedRoute, RouterLink, Params } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { ClipsListComponent } from '../../video/clips-list/clips-list.component';
 import videojs from 'video.js';
 import { IClip } from '../../models/clip.model';
 import { FbTimestampPipe } from '../../shared/pipes/fb-timestamp.pipe';
 
 @Component({
-    selector: 'app-clip',
-    imports: [RouterLink, ClipsListComponent, FbTimestampPipe],
-    templateUrl: './clip.component.html',
-    styleUrl: './clip.component.css'
+  selector: 'app-clip',
+  imports: [ClipsListComponent, FbTimestampPipe],
+  templateUrl: './clip.component.html',
+  styleUrl: './clip.component.css',
 })
 export class ClipComponent implements OnInit {
   route = inject(ActivatedRoute);
