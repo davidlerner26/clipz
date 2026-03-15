@@ -1,6 +1,6 @@
 import { Component, inject, signal } from '@angular/core';
 import { ReactiveFormsModule, FormBuilder, Validators } from '@angular/forms';
-import { CommonModule } from '@angular/common';
+
 import { InputComponent } from '../../shared/input/input.component';
 import { AlertComponent } from '../../shared/alert/alert.component';
 import { AuthService } from '../../services/auth.service';
@@ -8,7 +8,7 @@ import { Match, EmailTaken } from './validators';
 
 @Component({
     selector: 'app-register',
-    imports: [ReactiveFormsModule, CommonModule, InputComponent, AlertComponent],
+    imports: [ReactiveFormsModule, InputComponent, AlertComponent],
     templateUrl: './register.component.html',
     styleUrl: './register.component.css'
 })
