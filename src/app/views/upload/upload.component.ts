@@ -21,18 +21,17 @@ import { FfmpegService } from '../../services/ffmpeg.service';
 import { combineLatestWith, forkJoin } from 'rxjs';
 
 @Component({
-  selector: 'app-upload',
-  standalone: true,
-  imports: [
-    EventBlockerDirective,
-    NgClass,
-    ReactiveFormsModule,
-    InputComponent,
-    AlertComponent,
-    PercentPipe,
-  ],
-  templateUrl: './upload.component.html',
-  styleUrl: './upload.component.css',
+    selector: 'app-upload',
+    imports: [
+        EventBlockerDirective,
+        NgClass,
+        ReactiveFormsModule,
+        InputComponent,
+        AlertComponent,
+        PercentPipe,
+    ],
+    templateUrl: './upload.component.html',
+    styleUrl: './upload.component.css'
 })
 export class UploadComponent implements OnDestroy {
   isDragover = signal(false);

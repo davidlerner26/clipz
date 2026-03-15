@@ -4,11 +4,10 @@ import { Auth, signInWithEmailAndPassword } from '@angular/fire/auth';
 import { AlertComponent } from '../../shared/alert/alert.component';
 
 @Component({
-  selector: 'app-login',
-  standalone: true,
-  imports: [FormsModule, AlertComponent],
-  templateUrl: './login.component.html',
-  styleUrl: './login.component.css',
+    selector: 'app-login',
+    imports: [FormsModule, AlertComponent],
+    templateUrl: './login.component.html',
+    styleUrl: './login.component.css'
 })
 export class LoginComponent {
   auth = inject(Auth);

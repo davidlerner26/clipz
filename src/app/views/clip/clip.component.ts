@@ -13,11 +13,10 @@ import { IClip } from '../../models/clip.model';
 import { FbTimestampPipe } from '../../shared/pipes/fb-timestamp.pipe';
 
 @Component({
-  selector: 'app-clip',
-  standalone: true,
-  imports: [RouterLink, ClipsListComponent, FbTimestampPipe],
-  templateUrl: './clip.component.html',
-  styleUrl: './clip.component.css',
+    selector: 'app-clip',
+    imports: [RouterLink, ClipsListComponent, FbTimestampPipe],
+    templateUrl: './clip.component.html',
+    styleUrl: './clip.component.css'
 })
 export class ClipComponent implements OnInit {
   route = inject(ActivatedRoute);

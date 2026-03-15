@@ -15,17 +15,16 @@ import { NgClass } from '@angular/common';
 import { ClipService } from '../../services/clip.service';
 
 @Component({
-  selector: 'app-edit',
-  standalone: true,
-  imports: [
-    ModalComponent,
-    ReactiveFormsModule,
-    InputComponent,
-    AlertComponent,
-    NgClass,
-  ],
-  templateUrl: './edit.component.html',
-  styleUrl: './edit.component.css',
+    selector: 'app-edit',
+    imports: [
+        ModalComponent,
+        ReactiveFormsModule,
+        InputComponent,
+        AlertComponent,
+        NgClass,
+    ],
+    templateUrl: './edit.component.html',
+    styleUrl: './edit.component.css'
 })
 export class EditComponent {
   activeClip = input<IClip | null>(null);

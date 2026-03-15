@@ -7,11 +7,10 @@ import { AuthService } from '../../services/auth.service';
 import { Match, EmailTaken } from './validators';
 
 @Component({
-  selector: 'app-register',
-  standalone: true,
-  imports: [ReactiveFormsModule, CommonModule, InputComponent, AlertComponent],
-  templateUrl: './register.component.html',
-  styleUrl: './register.component.css',
+    selector: 'app-register',
+    imports: [ReactiveFormsModule, CommonModule, InputComponent, AlertComponent],
+    templateUrl: './register.component.html',
+    styleUrl: './register.component.css'
 })
 export class RegisterComponent {
   fb = inject(FormBuilder);
