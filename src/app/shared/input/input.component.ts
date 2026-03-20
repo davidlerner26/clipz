@@ -1,20 +1,17 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { UntypedFormControl } from '@angular/forms';
+import { Component, input } from '@angular/core';
+import { FormControl, ReactiveFormsModule } from '@angular/forms';
+import { provideNgxMask, NgxMaskDirective } from 'ngx-mask';
 
 @Component({
   selector: 'app-input',
+  imports: [ReactiveFormsModule, NgxMaskDirective],
   templateUrl: './input.component.html',
-  styleUrls: ['./input.component.css']
+  styleUrl: './input.component.scss',
+  providers: [provideNgxMask()],
 })
-export class InputComponent implements OnInit {
-  @Input() control: UntypedFormControl = new UntypedFormControl()
-  @Input() type = 'text'
-  @Input() placeholder = ''
-  @Input() format = ''
-
-  constructor() { }
-
-  ngOnInit(): void {
-  }
-
+export class InputComponent {
+  control = input.required<FormControl>();
+  type = input('text');
+  placeholder = input('');
+  format = input('');
 }
