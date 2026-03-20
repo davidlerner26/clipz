@@ -6,10 +6,10 @@ import { AuthService } from './services/auth.service';
 import { AsyncPipe } from '@angular/common';
 
 @Component({
-    selector: 'app-root',
-    imports: [RouterOutlet, NavComponent, AuthModalComponent, AsyncPipe],
-    templateUrl: './app.component.html',
-    styleUrl: './app.component.css'
+  selector: 'app-root',
+  imports: [RouterOutlet, NavComponent, AuthModalComponent, AsyncPipe],
+  templateUrl: './app.component.html',
+  styleUrl: './app.component.scss',
 })
 export class AppComponent {
   auth = inject(AuthService);

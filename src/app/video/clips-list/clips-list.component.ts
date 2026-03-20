@@ -4,10 +4,10 @@ import { RouterLink } from '@angular/router';
 import { FbTimestampPipe } from '../../shared/pipes/fb-timestamp.pipe';
 
 @Component({
-    selector: 'app-clips-list',
-    imports: [RouterLink, FbTimestampPipe],
-    templateUrl: './clips-list.component.html',
-    styleUrl: './clips-list.component.css'
+  selector: 'app-clips-list',
+  imports: [RouterLink, FbTimestampPipe],
+  templateUrl: './clips-list.component.html',
+  styleUrl: './clips-list.component.scss',
 })
 export class ClipsListComponent implements OnInit, OnDestroy {
   clipService = inject(ClipService);

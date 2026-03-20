@@ -21,17 +21,17 @@ import { FfmpegService } from '../../services/ffmpeg.service';
 import { combineLatestWith, forkJoin } from 'rxjs';
 
 @Component({
-    selector: 'app-upload',
-    imports: [
-        EventBlockerDirective,
-        NgClass,
-        ReactiveFormsModule,
-        InputComponent,
-        AlertComponent,
-        PercentPipe,
-    ],
-    templateUrl: './upload.component.html',
-    styleUrl: './upload.component.css'
+  selector: 'app-upload',
+  imports: [
+    EventBlockerDirective,
+    NgClass,
+    ReactiveFormsModule,
+    InputComponent,
+    AlertComponent,
+    PercentPipe,
+  ],
+  templateUrl: './upload.component.html',
+  styleUrl: './upload.component.scss',
 })
 export class UploadComponent implements OnDestroy {
   isDragover = signal(false);
@@ -77,7 +77,7 @@ export class UploadComponent implements OnDestroy {
     this.selectedScreenshot.set(this.screenshots()[0]);
 
     this.form.controls.title.setValue(
-      this.file()?.name.replace(/\.[^/.]+$/, '') ?? ''
+      this.file()?.name.replace(/\.[^/.]+$/, '') ?? '',
     );
 
     this.nextStep.set(true);
@@ -96,7 +96,7 @@ export class UploadComponent implements OnDestroy {
     const clipPath = `clips/${clipFileName}.mp4`;
 
     const screenshotBlob = await this.ffmpegService.blobFromURL(
-      this.selectedScreenshot()
+      this.selectedScreenshot(),
     );
     const screenshotPath = `screenshots/${clipFileName}.png`;
 
@@ -154,7 +154,7 @@ export class UploadComponent implements OnDestroy {
 
         this.alertColor.set('green');
         this.alertMsg.set(
-          'Success! Your clip is now ready to share with the world.'
+          'Success! Your clip is now ready to share with the world.',
         );
         this.showPercentage.set(false);
 

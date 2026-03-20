@@ -16,7 +16,7 @@ import { FbTimestampPipe } from '../../shared/pipes/fb-timestamp.pipe';
   selector: 'app-clip',
   imports: [ClipsListComponent, FbTimestampPipe],
   templateUrl: './clip.component.html',
-  styleUrl: './clip.component.css',
+  styleUrl: './clip.component.scss',
 })
 export class ClipComponent implements OnInit {
   route = inject(ActivatedRoute);

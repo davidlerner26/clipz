@@ -10,10 +10,10 @@ import {
 import { ModalService } from '../../services/modal.service';
 
 @Component({
-    selector: 'app-modal',
-    imports: [],
-    templateUrl: './modal.component.html',
-    styleUrl: './modal.component.css'
+  selector: 'app-modal',
+  imports: [],
+  templateUrl: './modal.component.html',
+  styleUrl: './modal.component.scss',
 })
 export class ModalComponent implements AfterViewInit, OnDestroy {
   modal = inject(ModalService);

@@ -15,16 +15,16 @@ import { NgClass } from '@angular/common';
 import { ClipService } from '../../services/clip.service';
 
 @Component({
-    selector: 'app-edit',
-    imports: [
-        ModalComponent,
-        ReactiveFormsModule,
-        InputComponent,
-        AlertComponent,
-        NgClass,
-    ],
-    templateUrl: './edit.component.html',
-    styleUrl: './edit.component.css'
+  selector: 'app-edit',
+  imports: [
+    ModalComponent,
+    ReactiveFormsModule,
+    InputComponent,
+    AlertComponent,
+    NgClass,
+  ],
+  templateUrl: './edit.component.html',
+  styleUrl: './edit.component.scss',
 })
 export class EditComponent {
   activeClip = input<IClip | null>(null);
@@ -52,7 +52,7 @@ export class EditComponent {
         this.inSubmission.set(false);
         this.showAlert.set(false);
       },
-      { allowSignalWrites: true }
+      { allowSignalWrites: true },
     );
   }
 
@@ -65,7 +65,7 @@ export class EditComponent {
     try {
       await this.clipService.updateClip(
         this.form.controls.id.value,
-        this.form.controls.title.value
+        this.form.controls.title.value,
       );
     } catch (e) {
       this.inSubmission.set(false);

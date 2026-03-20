@@ -3,10 +3,10 @@ import { NgClass } from '@angular/common';
 import { TabComponent } from '../tab/tab.component';
 
 @Component({
-    selector: 'app-tabs-container',
-    imports: [NgClass],
-    templateUrl: './tabs-container.component.html',
-    styleUrl: './tabs-container.component.css'
+  selector: 'app-tabs-container',
+  imports: [NgClass],
+  templateUrl: './tabs-container.component.html',
+  styleUrl: './tabs-container.component.scss',
 })
 export class TabsContainerComponent implements AfterContentInit {
   tabs = contentChildren(TabComponent);

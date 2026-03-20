@@ -4,10 +4,10 @@ import { Auth, signInWithEmailAndPassword } from '@angular/fire/auth';
 import { AlertComponent } from '../../shared/alert/alert.component';
 
 @Component({
-    selector: 'app-login',
-    imports: [FormsModule, AlertComponent],
-    templateUrl: './login.component.html',
-    styleUrl: './login.component.css'
+  selector: 'app-login',
+  imports: [FormsModule, AlertComponent],
+  templateUrl: './login.component.html',
+  styleUrl: './login.component.scss',
 })
 export class LoginComponent {
   auth = inject(Auth);
@@ -32,7 +32,7 @@ export class LoginComponent {
       await signInWithEmailAndPassword(
         this.auth,
         this.credentials.email,
-        this.credentials.password
+        this.credentials.password,
       );
     } catch (e) {
       this.inSubmission.set(false);

@@ -6,10 +6,10 @@ import { EditComponent } from '../../video/edit/edit.component';
 import { ModalService } from '../../services/modal.service';
 
 @Component({
-    selector: 'app-manage',
-    imports: [RouterLink, EditComponent],
-    templateUrl: './manage.component.html',
-    styleUrl: './manage.component.css'
+  selector: 'app-manage',
+  imports: [RouterLink, EditComponent],
+  templateUrl: './manage.component.html',
+  styleUrl: './manage.component.scss',
 })
 export class ManageComponent implements OnInit {
   router = inject(Router);

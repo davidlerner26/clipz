@@ -3,11 +3,11 @@ import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { provideNgxMask, NgxMaskDirective } from 'ngx-mask';
 
 @Component({
-    selector: 'app-input',
-    imports: [ReactiveFormsModule, NgxMaskDirective],
-    templateUrl: './input.component.html',
-    styleUrl: './input.component.css',
-    providers: [provideNgxMask()]
+  selector: 'app-input',
+  imports: [ReactiveFormsModule, NgxMaskDirective],
+  templateUrl: './input.component.html',
+  styleUrl: './input.component.scss',
+  providers: [provideNgxMask()],
 })
 export class InputComponent {
   control = input.required<FormControl>();

@@ -7,10 +7,10 @@ import { AuthService } from '../../services/auth.service';
 import { Match, EmailTaken } from './validators';
 
 @Component({
-    selector: 'app-register',
-    imports: [ReactiveFormsModule, InputComponent, AlertComponent],
-    templateUrl: './register.component.html',
-    styleUrl: './register.component.css'
+  selector: 'app-register',
+  imports: [ReactiveFormsModule, InputComponent, AlertComponent],
+  templateUrl: './register.component.html',
+  styleUrl: './register.component.scss',
 })
 export class RegisterComponent {
   fb = inject(FormBuilder);
@@ -31,7 +31,7 @@ export class RegisterComponent {
         [
           Validators.required,
           Validators.pattern(
-            /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/
+            /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/,
           ),
         ],
       ],
@@ -47,7 +47,7 @@ export class RegisterComponent {
     },
     {
       validators: [Match('password', 'confirmPassword')],
-    }
+    },
   );
 
   showAlert = signal(false);
