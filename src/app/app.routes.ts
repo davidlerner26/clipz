@@ -1,6 +1,5 @@
 import { Routes, ResolveFn, ActivatedRouteSnapshot } from '@angular/router';
 import { HomeComponent } from './views/home/home.component';
-import { AboutComponent } from './views/about/about.component';
 import { ManageComponent } from './views/manage/manage.component';
 import { UploadComponent } from './views/upload/upload.component';
 import { ClipComponent } from './views/clip/clip.component';
@@ -12,7 +11,7 @@ import { inject } from '@angular/core';
 
 const redirectUnauthorizedToHome = () => redirectUnauthorizedTo('/');
 const clipResolver: ResolveFn<IClip | null> = (
-  route: ActivatedRouteSnapshot
+  route: ActivatedRouteSnapshot,
 ) => {
   return inject(ClipService).resolve(route.paramMap.get('id')!);
 };
@@ -21,10 +20,6 @@ export const routes: Routes = [
   {
     path: '',
     component: HomeComponent,
-  },
-  {
-    path: 'about', // example.com/about
-    component: AboutComponent,
   },
   {
     path: 'manage',
