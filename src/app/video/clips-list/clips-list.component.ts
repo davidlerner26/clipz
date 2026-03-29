@@ -1,4 +1,11 @@
-import { Component, OnInit, OnDestroy, inject, input } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  OnDestroy,
+  inject,
+  input,
+  computed,
+} from '@angular/core';
 import { ClipService } from '../../services/clip.service';
 import { RouterLink } from '@angular/router';
 import { FbTimestampPipe } from '../../shared/pipes/fb-timestamp.pipe';
@@ -13,7 +20,12 @@ export class ClipsListComponent implements OnInit, OnDestroy {
   clipService = inject(ClipService);
 
   scrollable = input(true);
-  clipDocID = input<string>('');
+  docID = input('');
+  clips = computed(() => {
+    return this.docID()
+      ? this.clipService.pageClips().filter((pc) => pc.docID !== this.docID())
+      : this.clipService.pageClips();
+  });
 
   constructor() {
     this.clipService.getClips();

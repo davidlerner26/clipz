@@ -44,7 +44,7 @@ export class ClipService {
   async getUserClips() {
     const q = query(
       this.#clipsCollection,
-      where('uid', '==', this.#auth.currentUser?.uid)
+      where('uid', '==', this.#auth.currentUser?.uid),
     );
 
     return await getDocs(q);
@@ -69,7 +69,7 @@ export class ClipService {
 
     const screenshotRef = ref(
       this.storage,
-      `screenshots/${clip.screenshotFilename}`
+      `screenshots/${clip.screenshotFilename}`,
     );
 
     await deleteObject(screenshotRef);
