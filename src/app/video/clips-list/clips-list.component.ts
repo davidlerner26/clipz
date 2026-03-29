@@ -13,6 +13,7 @@ export class ClipsListComponent implements OnInit, OnDestroy {
   clipService = inject(ClipService);
 
   scrollable = input(true);
+  clipDocID = input<string>('');
 
   constructor() {
     this.clipService.getClips();
