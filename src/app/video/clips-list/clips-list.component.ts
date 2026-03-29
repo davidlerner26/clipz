@@ -5,10 +5,17 @@ import {
   inject,
   input,
   computed,
+  signal,
 } from '@angular/core';
 import { ClipService } from '../../services/clip.service';
-import { RouterLink } from '@angular/router';
+import {
+  ActivatedRoute,
+  NavigationEnd,
+  Router,
+  RouterLink,
+} from '@angular/router';
 import { FbTimestampPipe } from '../../shared/pipes/fb-timestamp.pipe';
+import { filter, Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-clips-list',
@@ -18,17 +25,25 @@ import { FbTimestampPipe } from '../../shared/pipes/fb-timestamp.pipe';
 })
 export class ClipsListComponent implements OnInit, OnDestroy {
   clipService = inject(ClipService);
+  route = inject(ActivatedRoute);
+  getDocIDSubscription = new Subscription();
+  private router = inject(Router);
 
   scrollable = input(true);
-  docID = input('');
+  docID = signal('');
   clips = computed(() => {
     return this.docID()
-      ? this.clipService.pageClips().filter((pc) => pc.docID !== this.docID())
+      ? this.clipService.pageClips()?.filter((pc) => pc.docID !== this.docID())
       : this.clipService.pageClips();
   });
 
   constructor() {
     this.clipService.getClips();
+    this.getDocIDSubscription = this.router.events
+      .pipe(filter((event) => event instanceof NavigationEnd))
+      .subscribe(() => {
+        this.getDocID();
+      });
   }
 
   ngOnInit() {
@@ -37,12 +52,9 @@ export class ClipsListComponent implements OnInit, OnDestroy {
     }
   }
 
-  ngOnDestroy() {
-    if (this.scrollable()) {
-      window.removeEventListener('scroll', this.handleScroll);
-    }
-
-    this.clipService.pageClips.set([]);
+  private getDocID() {
+    const { params } = this.route?.snapshot;
+    this.docID.set(params ? params['id'] : '');
   }
 
   handleScroll = () => {
@@ -56,4 +68,13 @@ export class ClipsListComponent implements OnInit, OnDestroy {
       this.clipService.getClips();
     }
   };
+
+  ngOnDestroy() {
+    if (this.scrollable()) {
+      window.removeEventListener('scroll', this.handleScroll);
+    }
+
+    this.clipService.pageClips.set([]);
+    this.getDocIDSubscription?.unsubscribe();
+  }
 }

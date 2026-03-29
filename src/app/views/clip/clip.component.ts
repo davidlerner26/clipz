@@ -22,10 +22,8 @@ export class ClipComponent implements OnInit {
   route = inject(ActivatedRoute);
   target = viewChild.required<ElementRef<HTMLVideoElement>>('videoPlayer');
   clip = signal<IClip | null>(null);
-  docID = signal('');
 
   ngOnInit() {
-    this.getDocID();
     const player = videojs(this.target().nativeElement);
     this.route.data.subscribe((data) => {
       this.clip.set(data['clip']);
@@ -34,10 +32,5 @@ export class ClipComponent implements OnInit {
         type: 'video/mp4',
       });
     });
-  }
-
-  private getDocID() {
-    const { params } = this.route?.snapshot;
-    this.docID.set(params ? params['id'] : '');
   }
 }
